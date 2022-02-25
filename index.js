@@ -39,14 +39,23 @@ app.post("/twilioconfiq",(req,res)=>{
     console.log(twilioSID);
     console.log(twilioauthtoken);
     console.log(message);
-    const client = new twilio('ACdd6486b54212f6bc7740b98a158177b2', 'a792e283777a09b5035176281fcfb3e0');
-    client.messages
-        .create({
+    for(let i=0;i<phonenumber.length;i++){
+        const client = new twilio(twilioSID, twilioauthtoken);
+        client.messages.create({
             body: message,
-            to: '+8801622869685', // Text this number
-            from: '+19034874646'
+            to:phonenumber[i],
+            from: twilionumber
         })
-        .then((message) => console.log(message.sid));
+        .then((message)=>console.log(message.sid));
+    }
+    // const client = new twilio(twilioSID, twilioauthtoken);
+    // client.messages
+    //     .create({
+    //         body: message,
+    //         to: phonenumber, // Text this number
+    //         from: twilionumber
+    //     })
+    //     .then((message) => console.log(message.sid));
     console.log("hello world");
 
 })
