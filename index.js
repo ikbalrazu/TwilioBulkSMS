@@ -62,9 +62,10 @@ app.post("/twilioconfiq",(req,res)=>{
 
 
 app.get("/sendsms", (req, res) => {
-    res.send("Hello world");
-    sendSMS();
+    res.send("Hello world by iqbal");
+    // sendSMS();
 })
+
 
 app.listen(port, function (error) {
     if (error) {
