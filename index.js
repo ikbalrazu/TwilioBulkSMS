@@ -63,7 +63,7 @@ app.post("/twilioconfiq",(req,res)=>{
 
 app.post("/testinvercel",(req,res)=>{
     const { name, location } = req.body;
-    res.send({ status: "User created", name, location });
+    res.send({ status: "User created successfully by iqbal", name, location });
 })
 
 app.get("/sendsms", (req, res) => {
