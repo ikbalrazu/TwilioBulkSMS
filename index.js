@@ -1,10 +1,18 @@
 const express = require('express');
-const cors = require('cors');
+// const cors = require('cors');
 const twilio = require('twilio');
 const app = express();
 const port = process.env.PORT || 3001;
 
-app.use(cors());
+// app.use(cors());
+const cors=require("cors");
+const corsOptions ={
+   origin:'*', 
+   credentials:true,            //access-control-allow-credentials:true
+   optionSuccessStatus:200,
+}
+
+app.use(cors(corsOptions))
 app.use(express.json());
 
 const accountSid = 'ACadc3ffb43cef495abeafebce2609c137'; // Your Account SID from www.twilio.com/console
@@ -33,21 +41,22 @@ app.get("/",(req,res)=>{
 })
 
 app.post("/twilioconfiq",(req,res)=>{
-    const {phonenumber,twilionumber,twilioSID,twilioauthtoken,message} = req.body;
+    const {phonenumber,twilionumber,twilioSID,twilioauthtoken,templatemessage} = req.body;
     console.log(phonenumber);
     console.log(twilionumber);
     console.log(twilioSID);
     console.log(twilioauthtoken);
-    console.log(message);
-    const messagesid;
+    console.log(templatemessage);
     for(let i=0;i<phonenumber.length;i++){
         const client = new twilio(twilioSID, twilioauthtoken);
         client.messages.create({
-            body: message,
+            body: templatemessage,
             to:phonenumber[i],
             from: twilionumber
         })
-        .then((message)=>messagesid=message.sid);
+        .then(function(message){
+            console.log(message.sid);
+        });
     }
     // const client = new twilio(twilioSID, twilioauthtoken);
     // client.messages
@@ -58,7 +67,7 @@ app.post("/twilioconfiq",(req,res)=>{
     //     })
     //     .then((message) => console.log(message.sid));
     // console.log("hello world");
-    res.send({ status: "SMS Send Successfully", phonenumber, twilionumber, twilioSID, twilioauthtoken, message, messagesid});
+    res.send({ status: "SMS Send Successfully", phonenumber, twilionumber, twilioSID, twilioauthtoken, templatemessage});
 
 })
 
