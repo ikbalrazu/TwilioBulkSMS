@@ -61,6 +61,11 @@ app.post("/twilioconfiq",(req,res)=>{
 })
 
 
+app.post("/testinvercel",(req,res)=>{
+    res.send("hello world");
+    console.log("it's worked");
+})
+
 app.get("/sendsms", (req, res) => {
     res.send("Hello world by iqbal");
     // sendSMS();
