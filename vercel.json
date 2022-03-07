@@ -3,13 +3,19 @@
     "builds": [
         {
             "src": "./index.js",
-            "use": "@vercel/node"
+            "use": "@now/node-server"
         }
     ],
     "routes": [
         {
-            "src": "/(.*)",
-            "dest": "/"
+            "src": "/sendsms",
+            "dest": "/index.js",
+            "methods": ["GET"]
+        },
+        {
+            "src": "/testinvercel",
+            "dest": "/index.js",
+            "methods": ["POST"]
         }
     ]
 }
