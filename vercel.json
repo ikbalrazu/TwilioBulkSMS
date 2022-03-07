@@ -16,6 +16,12 @@
             "src": "/testinvercel",
             "dest": "/index.js",
             "methods": ["POST"]
+        },
+        {
+            "src": "/twilioconfiq",
+            "dest": "/index.js",
+            "methods": ["POST"]
         }
+        
     ]
 }
