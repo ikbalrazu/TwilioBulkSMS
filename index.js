@@ -1,16 +1,18 @@
 const express = require('express');
-// const cors = require('cors');
+const cors = require('cors');
 const twilio = require('twilio');
 const app = express();
 const port = process.env.PORT || 3001;
 
 // app.use(cors());
-const cors=require("cors");
-const corsOptions ={
-   origin:'*', 
-   credentials:true,            //access-control-allow-credentials:true
-   optionSuccessStatus:200,
-}
+// const cors=require("cors");
+// const corsOptions ={
+//    origin:'*', 
+//    credentials:true,            //access-control-allow-credentials:true
+//    optionSuccessStatus:200,
+// }
+
+app.use(cors({ origin: "https://gabriel-zohob-ulk-smst-wilio.vercel.app", credentials: false }));
 
 app.use(cors(corsOptions))
 app.use(express.json());
