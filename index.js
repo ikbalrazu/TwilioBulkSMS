@@ -56,7 +56,8 @@ app.post("/twilioconfiq",(req,res)=>{
     //         from: twilionumber
     //     })
     //     .then((message) => console.log(message.sid));
-    console.log("hello world");
+    // console.log("hello world");
+    res.send({ status: "SMS Send Successfully", phonenumber, twilionumber, twilioSID, twilioauthtoken, message});
 
 })
 
