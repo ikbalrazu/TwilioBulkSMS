@@ -12,10 +12,10 @@ const port = process.env.PORT || 3001;
 //    optionSuccessStatus:200,
 // }
 
-app.use(cors({ origin: "https://gabriel-zohob-ulk-smst-wilio.vercel.app", credentials: false }));
+app.use(cors({ origin: "https://bulksmsfrontend.netlify.app", credentials: false }));
 
-app.use(cors(corsOptions))
-app.use(express.json());
+// app.use(cors(corsOptions))
+// app.use(express.json());
 
 const accountSid = 'ACadc3ffb43cef495abeafebce2609c137'; // Your Account SID from www.twilio.com/console
 const authToken = '1069b3764bb73164952c4effb0259a96'; // Your Auth Token from www.twilio.com/console
