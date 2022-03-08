@@ -4,7 +4,7 @@ const twilio = require('twilio');
 const app = express();
 const port = process.env.PORT || 3001;
 
-// app.use(cors());
+app.use(cors());
 // const cors=require("cors");
 // const corsOptions ={
 //    origin:'*', 
@@ -12,7 +12,7 @@ const port = process.env.PORT || 3001;
 //    optionSuccessStatus:200,
 // }
 
-app.use(cors({ origin: "https://bulksmsfrontend.netlify.app", credentials: false }));
+// app.use(cors({ origin: "https://bulksmsfrontend.netlify.app", credentials: false }));
 
 // app.use(cors(corsOptions))
 // app.use(express.json());
