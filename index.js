@@ -51,6 +51,7 @@ app.post("/twilioconfiq",(req,res)=>{
     console.log(twilioSID);
     console.log(twilioauthtoken);
     console.log(templatemessage);
+    let smsRecord = [];
     for(let i=0;i<phonenumber.length;i++){
         const client = new twilio(twilioSID, twilioauthtoken);
         client.messages.create({
@@ -61,7 +62,8 @@ app.post("/twilioconfiq",(req,res)=>{
         .then(function(message){
             console.log(message.sid);
             //var messagesid = message.sid;
-            res.json({status: "SMS Send Successfully", phonenumber: phonenumber[i], twilionumber, twilioSID, twilioauthtoken, templatemessage});
+            //smsRecord.push(message);
+            //res.json({status: "SMS Send Successfully", twilionumber, twilioSID, twilioauthtoken, templatemessage});
         });
     }
     // const client = new twilio(twilioSID, twilioauthtoken);
@@ -73,7 +75,7 @@ app.post("/twilioconfiq",(req,res)=>{
     //     })
     //     .then((message) => console.log(message.sid));
     // console.log("hello world");
-    //res.send({ status: "SMS Send Successfully", phonenumber, twilionumber, twilioSID, twilioauthtoken, templatemessage});
+    res.send({ status: "SMS Send Successfully", phonenumber, twilionumber, twilioSID, twilioauthtoken, templatemessage});
 
 })
 
