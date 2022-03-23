@@ -45,37 +45,41 @@ app.get("/",(req,res)=>{
 })
 
 app.post("/twilioconfiq",(req,res)=>{
-    const {phonenumber,twilionumber,twilioSID,twilioauthtoken,templatemessage} = req.body;
-    console.log(phonenumber);
+    const {number,twilionumber,twilioSID,twilioauthtoken,templatemessage} = req.body;
+    console.log(number);
     console.log(twilionumber);
     console.log(twilioSID);
     console.log(twilioauthtoken);
     console.log(templatemessage);
     let smsRecord = [];
-    for(let i=0;i<phonenumber.length;i++){
-        const client = new twilio(twilioSID, twilioauthtoken);
-        client.messages.create({
+    // for(let i=0;i<phonenumber.length;i++){
+    //     const client = new twilio(twilioSID, twilioauthtoken);
+    //     client.messages.create({
+    //         body: templatemessage,
+    //         to:phonenumber[i],
+    //         from: twilionumber
+    //     })
+    //     .then(function(message){
+    //         console.log(message.sid);
+    //         //var messagesid = message.sid;
+    //         //smsRecord.push(message);
+    //         //res.json({status: "SMS Send Successfully", twilionumber, twilioSID, twilioauthtoken, templatemessage});
+    //     });
+    // }
+    const client = new twilio(twilioSID, twilioauthtoken);
+    client.messages
+        .create({
             body: templatemessage,
-            to:phonenumber[i],
+            to: number, // Text this number
             from: twilionumber
         })
         .then(function(message){
-            console.log(message.sid);
-            //var messagesid = message.sid;
-            //smsRecord.push(message);
-            //res.json({status: "SMS Send Successfully", twilionumber, twilioSID, twilioauthtoken, templatemessage});
+            console.log("Number: ",number," and sid: ",message.sid)
+            var messagesid = message.sid;
+            res.send({ status: "Success", number, messagesid});
         });
-    }
-    // const client = new twilio(twilioSID, twilioauthtoken);
-    // client.messages
-    //     .create({
-    //         body: message,
-    //         to: phonenumber, // Text this number
-    //         from: twilionumber
-    //     })
-    //     .then((message) => console.log(message.sid));
     // console.log("hello world");
-    res.send({ status: "SMS Send Successfully", phonenumber, twilionumber, twilioSID, twilioauthtoken, templatemessage});
+    // res.send({ status: "SMS Send Successfully", phonenumber, twilionumber, twilioSID, twilioauthtoken, templatemessage});
 
 })
 
