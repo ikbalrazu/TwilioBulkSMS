@@ -6,16 +6,7 @@ const app = express();
 const port = process.env.PORT || 3001;
 
 app.use(cors());
-// const cors=require("cors");
-// const corsOptions ={
-//    origin:'*', 
-//    credentials:true,            //access-control-allow-credentials:true
-//    optionSuccessStatus:200,
-// }
 
-// app.use(cors({ origin: "https://bulksmsfrontend.netlify.app", credentials: false }));
-
-// app.use(cors(corsOptions))
 app.use(express.json());
 app.use(bodyparser.urlencoded({ extended: true }));
 
@@ -52,20 +43,7 @@ app.post("/twilioconfiq",(req,res)=>{
     console.log(twilioauthtoken);
     console.log(templatemessage);
     let smsRecord = [];
-    // for(let i=0;i<phonenumber.length;i++){
-    //     const client = new twilio(twilioSID, twilioauthtoken);
-    //     client.messages.create({
-    //         body: templatemessage,
-    //         to:phonenumber[i],
-    //         from: twilionumber
-    //     })
-    //     .then(function(message){
-    //         console.log(message.sid);
-    //         //var messagesid = message.sid;
-    //         //smsRecord.push(message);
-    //         //res.json({status: "SMS Send Successfully", twilionumber, twilioSID, twilioauthtoken, templatemessage});
-    //     });
-    // }
+    
     const client = new twilio(twilioSID, twilioauthtoken);
     client.messages
         .create({
@@ -78,8 +56,7 @@ app.post("/twilioconfiq",(req,res)=>{
             var messagesid = message.sid;
             res.send({ status: "Success", number, messagesid});
         });
-    // console.log("hello world");
-    // res.send({ status: "SMS Send Successfully", phonenumber, twilionumber, twilioSID, twilioauthtoken, templatemessage});
+    
 
 })
 
