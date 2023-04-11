@@ -2,8 +2,11 @@ const express = require('express');
 const cors = require('cors');
 const twilio = require('twilio');
 const bodyparser = require('body-parser');
+const dotenv = require('dotenv');
+
+dotenv.config();
 const app = express();
-const port = process.env.PORT || 3001;
+const PORT = process.env.PORT || 4000;
 
 app.use(cors());
 
@@ -72,11 +75,11 @@ app.get("/sendsms", (req, res) => {
 })
 
 
-app.listen(port, function (error) {
+app.listen(PORT, function (error) {
     if (error) {
         console.log("Server fail");
     }
     else {
-        console.log("Server Success");
+        console.log(`Server Success ${PORT}`);
     }
 })
